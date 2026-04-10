@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Kilan 2.0</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { font-family: 'DM Sans', sans-serif; }
+    .font-display { font-family: 'Fraunces', serif; }
+
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .project-card:hover .card-img {
+      transform: scale(1.05);
+    }
+    .card-img {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tag {
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .tag:hover {
+      filter: brightness(0.9);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-pattern {
+      background-image: radial-gradient(circle at 20% 50%, rgba(34,197,94,0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(22,163,74,0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 60% 80%, rgba(74,222,128,0.06) 0%, transparent 40%);
+    }
+
+    .filter-btn.active {
+      color: #fff !important;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .float-anim { animation: float 3s ease-in-out infinite; }
+    .float-anim-delay { animation: float 3s ease-in-out 0.5s infinite; }
+    .float-anim-delay2 { animation: float 3s ease-in-out 1s infinite; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div id="app" class="w-full min-h-full" style="background-color: #f0fdf4;">
+   <!-- Hero Section -->
+   <header class="hero-pattern relative overflow-hidden" style="padding: 60px 20px 50px;">
+    
+<!-- Logo kiri atas -->
+<div class="absolute top-6 left-6 z-20">
+  <img src="images/logo1.png"
+       class="h-21 md:h-24 object-contain">
+</div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+     <!-- Floating decorative elements -->
+     <div class="absolute top-4 left-8 float-anim opacity-40">
+      <svg width="40" height="40" viewbox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#22c55e" stroke-width="2" />
+      </svg>
+     </div>
+     <div class="absolute top-12 right-12 float-anim-delay opacity-30">
+      <svg width="32" height="32" viewbox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="4" fill="none" stroke="#16a34a" stroke-width="2" transform="rotate(15 16 16)" />
+      </svg>
+     </div>
+     <div class="absolute bottom-8 left-1/4 float-anim-delay2 opacity-25">
+      <svg width="24" height="24" viewbox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="none" stroke="#4ade80" stroke-width="2" />
+      </svg>
+     </div>
+     
+<div class="flex flex-col items-center justify-center mb-5">
+  <img src="images/logo2.png" 
+       class="h-21 md:h-28 mb-3 object-contain">
+  <span class="px-4 py-1.5 rounded-full text-sm font-medium"
+        style="background: rgba(22,163,74,0.1); color: #16a34a;">
+  </span>
+</div>
+
+     <h1 id="heroTitle" class="font-display text-4xl md:text-5xl lg:text-6xl font-800 leading-tight mb-4" style="color: #14532d;">Eco Kilan 2.0</h1>
+     <p id="heroSubtitle" class="text-lg md:text-xl max-w-2xl mx-auto mb-8" style="color: #166534; opacity: 0.8;">This project is carried out in an effort to strengthen ethical business values ​​with sustainable practices through the development of a flower nursery, the construction of a compost garden, a greenhouse for planting flowers and a herb garden in Kampung Kilan.</p><a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white transition-all hover:shadow-lg hover:scale-105" style="background: #16a34a;" id="ctaButton"> <span id="ctaText">Explore Projects</span> <i data-lucide="arrow-down" style="width:18px;height:18px;"></i> </a>
+    </div>
+   </header><!-- Stats Bar -->
+   <div class="max-w-6xl mx-auto px-5 -mt-2 mb-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+</div>
+<!-- Vision and Mission Button -->
+<div 
+  class="fade-up bg-white rounded-2xl p-5 text-center shadow-sm border border-green-100 cursor-pointer hover:bg-green-50"
+  style="transition-delay:0.1s"
+  onclick="toggleVisionMission()"
+>
+  <div class="font-display text-2xl font-700" style="color:#16a34a;">
+    Vision and Mission
+ 
+</div>
+</div>
+
+<!-- Vision and Mission Content -->
+<div 
+  id="visionMissionContent"
+  class="mt-4 bg-white rounded-2xl p-6 shadow-sm border border-green-100 hidden fade-up"
+>
+  <p class="text-sm leading-relaxed" style="color:#166534;">
+    Eco-Schools Malaysia organises a range of modular projects designed to engage and empower schools in their sustainability journey. These modular projects provide flexible and customisable opportunities for schools to address specific environmental focus areas and take action. Each modular project focuses on a specific theme, allowing schools to select and participate in projects that align with their priorities and interests. These projects provide a structured framework, resources, and support to guide schools in implementing impactful initiatives and making a positive difference in their communities. Through the modular projects, Eco-Schools Malaysia empowers schools to actively contribute to a greener and more sustainable Malaysia.
+  </p>
+</div>
+
+<script>
+function toggleVisionMission() {
+  const content = document.getElementById("visionMissionContent");
+  content.classList.toggle("hidden");
+}
+</script>
+<div
+
+<!-- Objectives Button -->
+<div 
+  class="fade-up bg-white rounded-2xl p-5 text-center shadow-sm border border-green-100 cursor-pointer hover:bg-green-50 w-full"
+  style="transition-delay:0.1s"
+  onclick="toggleObjectives()"
+>
+  <div class="font-display text-2xl font-700" style="color:#16a34a;">
+    Objectives
+  </div>
+</div>
+
+
+<!-- Objectives Content-->
+<div 
+  id="ObjectivesContent"
+  class="mt-4 bg-white rounded-2xl p-6 shadow-sm border border-green-100 hidden fade-up"
+>
+  <ul class="list-disc list-inside text-sm space-y-2" style="color:#166534;">
+    <li>To enhance awareness among students and the Kampung Kilan community on environmental sustainability and ethical practices through hands-on planting activities.</li>
+    <li>To develop a sustainable planting area by cultivating vegetables, herbs, and plants for community use and long-term project continuity.</li>
+    <li>To promote the use of organic waste in producing natural fertilizer, encouraging eco-friendly and responsible practices.</li>
+    <li>To strengthen collaboration between students, community members, and external organizations through active participation and knowledge sharing.</li>
+    <li>To ensure the continuity and improvement of the ECO KILAN project as a long-term community-based initiative.</li>
+   </ul>
+</div>
+
+<script>
+function toggleObjectives() {
+  const content = document.getElementById("ObjectivesContent");
+  content.classList.toggle("hidden");
+}
+</script>
+</div>
+
+<!-- BEFORE and AFTER Button -->
+<div 
+  class="fade-up bg-white rounded-2xl p-5 text-center shadow-sm border border-green-100 cursor-pointer hover:bg-green-50"
+  style="transition-delay:0.1s"
+  onclick="toggleBeforeAfter()"
+>
+  <div class="font-display text-2xl font-700" style="color:#16a34a;">
+    BEFORE & AFTER
+  </div>
+</div>
+
+
+<!-- BEFORE and AFTER Content -->
+<div 
+  id="beforeAfterContent"
+  class="mt-4 bg-white rounded-2xl p-6 shadow-sm border border-green-100 hidden fade-up"
+>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+    <img src="before/foto1.jpg" class="w-full rounded-lg object-cover">
+    <img src="before/foto2.jpg" class="w-full rounded-lg object-cover">
+    <img src="before/foto3.jpg" class="w-full rounded-lg object-cover">
+ 
+
+  </div>
+</div>
+
+
+<script>
+function toggleBeforeAfter() {
+  const content = document.getElementById("beforeAfterContent");
+  content.classList.toggle("hidden");
+}
+</script>
+
+
+
+     </div>
+    </div>
+   </div><!-- Filter -->
+   <div id="projects" class="max-w-6xl mx-auto px-5 mb-8">
+    <div class="flex flex-wrap gap-2 justify-center" id="filterBar">
+     <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all" style="background:#16a34a;color:#fff;" data-filter="all">All Projects</button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all border" style="background:#fff;color:#166534;border-color:#d1fae5;" data-filter="👥">👥 </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all border" style="background:#fff;color:#166534;border-color:#d1fae5;" data-filter="🌱">🌱 </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all border" style="background:#fff;color:#166534;border-color:#d1fae5;" data-filter="🎓">🎓 </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all border" style="background:#fff;color:#166534;border-color:#d1fae5;" data-filter="❤️">❤️ </button> 
+   </div><!-- Projects Grid -->
+   <div class="max-w-6xl mx-auto px-5 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
+    </div>
+    <div id="emptyState" class="hidden text-center py-16">
+     <div class="text-5xl mb-4">
+      🔍
+     </div>
+     <p class="text-lg font-medium" style="color:#166534;">No projects found for this category.</p>
+    </div>
+   </div><!-- Modal -->
+   <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden" style="background:rgba(0,0,0,0.5); backdrop-filter:blur(4px);">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90%] overflow-auto shadow-2xl" id="modalContent">
+     <div class="relative overflow-hidden rounded-t-3xl h-48" id="modalBanner">
+      <button onclick="closeModal()" class="absolute top-3 right-3 z-10 bg-white/90 rounded-full p-2 hover:bg-white transition-all shadow" aria-label="Close modal"> <i data-lucide="x" style="width:20px;height:20px;color:#14532d;"></i> </button>
+      <div class="absolute inset-0 flex items-center justify-center text-6xl" id="modalEmoji"></div>
+     </div>
+     <div class="p-6">
+      <div class="flex items-center gap-2 mb-2">
+       <span class="text-xs font-semibold px-2.5 py-1 rounded-full" id="modalTag"></span> <span class="text-xs" style="color:#16a34a;" id="modalDuration"></span>
+      </div>
+      <h2 class="font-display text-2xl font-700 mb-3" style="color:#14532d;" id="modalTitle"></h2>
+      <p class="leading-relaxed mb-5" style="color:#166534;opacity:0.85;font-size:15px;" id="modalDesc"></p>
+      <div class="space-y-3 mb-5" id="modalObjectives"></div>
+      <div class="flex gap-3">
+       <button onclick="closeModal()" class="flex-1 py-2.5 rounded-xl font-semibold text-white transition-all hover:shadow-lg" style="background:#16a34a;">Get Started</button> <button onclick="closeModal()" class="py-2.5 px-4 rounded-xl font-medium border transition-all hover:bg-gray-50" style="border-color:#d1fae5;color:#166534;">Close</button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Footer -->
+   <footer class="border-t py-12 px-5" style="border-color:#d1fae5;">
+    <div class="max-w-6xl mx-auto"><!-- Top Section -->
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><!-- Branding -->
+      <div>
+       <div class="flex items-center gap-2 font-display font-700 mb-3" style="color:#16a34a;">
+        <i data-lucide="leaf" style="width:20px;height:20px;"></i> Eco-Schools
+       </div>
+       <p class="text-sm" style="color:#166534;opacity:0.7;">Building sustainable futures through modular environmental projects.</p>
+      </div><!-- Contact -->
+      <div>
+       <h4 class="font-semibold text-sm mb-3" style="color:#14532d;">Get in Touch</h4>
+       <div class="space-y-2 text-sm">
+                <div class="flex items-center gap-2" style="color:#166534;"><i data-lucide="phone" style="width:16px;height:16px;color:#16a34a;"></i> <a href="tel:+601111225475" class="hover:underline" style="color:#16a34a;">+60 11 1122 5475</a>
+        </div>
+        <div class="flex items-center gap-2" style="color:#166534;"><i data-lucide="map-pin" style="width:16px;height:16px;color:#16a34a;"></i> <span>Labuan, Malaysia</span>
+        </div>
+       </div>
+      </div><!-- Donate -->
+      <div>
+       <h4 class="font-semibold text-sm mb-3" style="color:#14532d;">Support Our Mission</h4>
+       <p class="text-sm mb-4" style="color:#166534;opacity:0.7;">Help us empower more schools with sustainable programmes.</p><a href="https://donorbox.org/eco-schools" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-white transition-all hover:shadow-md hover:scale-105" style="background:#16a34a;"> <i data-lucide="heart" style="width:16px;height:16px;"></i> <span>Donate Now</span> </a>
+      </div>
+     </div><!-- Social Media & Bottom -->
+     <div class="border-t pt-6" style="border-color:#d1fae5;">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+       <div class="flex items-center gap-4"><a href="https://www.instagram.com/ecokilan_5?igsh=eW9ybDA1cHR5ZDky&utm_source=qr" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full transition-all hover:scale-110 hover:shadow-md" style="background:#f0fdf4;color:#16a34a;" aria-label="Instagram"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> </a> <a href="https://www.tiktok.com/@eco_kilan26?_r=1&_t=ZS-95EQKhI2jya" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full transition-all hover:scale-110 hover:shadow-md" style="background:#f0fdf4;color:#16a34a;" aria-label="TikTok"> <i data-lucide="music" style="width:18px;height:18px;"></i> </a> 
+       </div>
+       <p class="text-xs" style="color:#166534;opacity:0.6;">© 2026 Eco-Schools Programme. All rights reserved.</p>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+const projects = [
+  { id:1, title:"Socio-Economic Projects", category:"👥", emoji:"👥", color:"#fef3c7", tagColor:"#f59e0b", duration:"Symposium Connecting the Dots: Neurological diversity, Inclusive Education and Digitalisation", desc:"Education and skills are essential for economic growth, improved living standards, and social and cultural development. However, access barriers continue to challenge education and skills development systems, particularly for special needs students. Inclusive education, under the Eco-Schools global citizenship theme, addresses these gaps. This day-long event brings together individuals with intellectual and developmental disabilities and their support networks through workshops, activities, and plenary sessions focused on independent living within the community.", objectives:["High-Level Event featuring VIPs, with top management delivering keynote or opening speeches.","Staff involvement through sports and outdoor activities, event management, stewardship, and training facilitation.","Capacity building by encouraging staff to conduct or facilitate teaching and training sessions.","Publicity and media exposure, including main sponsor logo placement and a press conference with VIPs.","Socio-economic project impact, supporting SDG 4 (Quality Education), SDG 8 (Decent Work & Economic Growth), and SDG 10 (Reduced Inequality)."] },
+  { id:2, title:"Biodiversity, Cultural & Heritage Projects", category:"🌱", emoji:"🌱", color:"#dcfce7", tagColor:"#22c55e", duration:"Turtle Tour and Camp", desc:"Since 2016, GGAF, in partnership with WWF Malaysia, has organised turtle tours and camps to deliver engaging sea turtle education to students. The programme aims to reach teachers and students across Melaka schools through classroom lessons, while giving local teachers and students the opportunity to learn directly from professional marine biologists. Since its launch in November 2016, the programme has reached nearly 800 students through interactive games, activities, and team projects focused on marine conservation. Conducted 3–4 times monthly throughout the year, the initiative brings hands-on science education directly into classrooms and continues to inspire awareness and action for marine conservation.", objectives:["Non–high-level event, with no VIP or top management involvement.","Staff involvement through participation in beach cleaning activities and sea turtle nesting monitoring.","No publicity or media highlights included for this event.","Project category focuses on Unity, Cultural, Biodiversity, and Heritage initiatives.","Supports SDGs including SDG 4 (Quality Education), SDG 11 (Sustainable Cities & Communities), and SDG 14 (Life Below Water)."] },
+  { id:3, title:"Education Projects", category:"🎓", emoji:"🎓", color:"#dbeafe", tagColor:"#3b82f6", duration:"Eco-Schools Awards Night", desc:"The Green Flag is an international symbol of excellence in school sustainability under the Eco‑Schools Programme. Schools submit an annual assessment report based on the programme’s seven steps, which is reviewed by independent assessors through documentation and discussions with students and teachers. The Eco‑Schools Award Ceremony recognises schools with exemplary environmental programmes, encouraging them to continue their efforts while inspiring other schools to follow their lead. Trophies are presented as tokens of appreciation to Green Flag, Silver, and Bronze award recipients during the annual ceremony held each January, honouring their contributions to environmental education and community engagement.", objectives:["High-level education event with top management invited to officiate and deliver keynote speeches.","Staff involvement through event stewardship and administrative support.","Publicity and media exposure including main sponsor logo placement and a VIP press conference.","Education-focused project promoting awareness and learning outcomes.","Aligned with SDGs: SDG 4 (Quality Education), SDG 12 (Responsible Consumption & Production), and SDG 13 (Climate Action)."] },
+  { id:4, title:"Community Projects", category:"👥", emoji:"🤝", color:"#fce7f3", tagColor:"#ec4899", duration:"Santai Hijau Eco-Schools with School Leaders", desc:"The Leaders–Students Dialogue series provides a platform for open discussion between students and community, political, and corporate leaders on environmental issues. It enables the sharing of local government initiatives while giving students an opportunity to voice their concerns and perspectives on environmental protection and conservation. This thought‑provoking and inspirational forum encourages meaningful exchange and helps reshape ideas around environmentally driven leadership, fostering new ways of thinking about leadership among the younger generation.", objectives:["High-level engagement session (Santai Hijau) where key top management from the funding organisation interact with students to discuss Sustainable Development Goals and share organisational best practices.","Staff involvement through participation in event management and coordination activities.","Publicity and media exposure including main sponsor logo placement, press conference, and coverage in local media.","Community-based project focusing on awareness, engagement, and sustainable development practices.","Aligned with SDGs: SDG 4 (Quality Education), SDG 11 (Sustainable Cities & Communities), SDG 13 (Climate Action), and SDG 17 (Partnerships for the Goals)."] },
+  { id:5, title:"Environment projects", category:"🌱", emoji:"🌍", color:"#fff7ed", tagColor:"#f97316", duration:"Planting “Tiny Forests” – A Sustainable Solution to Deforestation", desc:"Forests are vital to the planet’s health, yet they are disappearing at an alarming rate—equivalent to 36 football pitches lost every minute, according to Afforestt founder Mr Sharma. The Tiny Forest concept, led by Mr Sharma and Afforestt, promotes the creation of small, dense urban forests the size of a tennis court, planted with diverse tree species to maximise biodiversity. GGAF piloted this initiative in Melaka in 2018, and in 2019 established the first official tiny forest at SK Air Baruk, planting 30 trees from 21 species. The project aims to expand to 20 schools over seven years, educating students on the importance of forests and environmental conservation.", objectives:["High-level launching event with top management staff invited to officiate the launch.","Staff involvement through participation in tree planting activities.","Publicity and media coverage including press conference and official launching ceremony highlights.","Environmental-focused project aimed at promoting sustainability and ecological conservation.","Environmental-focused project aimed at promoting sustainability and ecological conservation."] },
+  { id:6, title:"health Projects", category:"❤️", emoji:"❤️", color:"#fef9c3", tagColor:"#eab308", duration:"We Eat Responsibly Project – Zero Hunger", desc:"As humanity is living beyond planetary boundaries and the global population approaches 10 billion, reflecting on our lifestyles and their impacts on people and ecosystems is essential for a sustainable future. This initiative focuses on responsible food consumption and sustainable food systems, as poor food system management contributes to hunger, poverty, human rights violations, environmental degradation, biodiversity loss, resource exploitation, and climate change. The We Eat Responsibly Project supports schools in exploring responsible food choices and sustainable practices. The project will be launched in August 2019 in selected schools in Sabah, with a focus on addressing the issue of students skipping breakfast.", objectives:["High-level programme launch with top management staff invited to officiate the event.","Staff involvement through teaching, tutoring, mentoring, and volunteering to adopt schools, mentor participants, and conduct training sessions.","Publicity and media exposure including co-sponsor recognition, press conference, and launch ceremony coverage.","Health-focused project aimed at improving nutrition and overall well‑being in the community.","Aligned with SDGs: SDG 2 (Zero Hunger) and SDG 3 (Good Health & Well‑being)."] },
+
+];
+
+let currentFilter = 'all';
+
+function renderProjects(filter) {
+  const grid = document.getElementById('projectsGrid');
+  const empty = document.getElementById('emptyState');
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="project-card fade-up bg-white rounded-2xl overflow-hidden shadow-sm border border-green-100 cursor-pointer" style="transition-delay:${i * 0.08}s" onclick="openModal(${p.id})">
+      <div class="overflow-hidden h-44 relative flex items-center justify-center" style="background:${p.color};">
+        <span class="text-6xl card-img">${p.emoji}</span>
+        <div class="absolute top-3 right-3">
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full text-white" style="background:${p.tagColor};">${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</span>
+        </div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <i data-lucide="clock" style="width:14px;height:14px;color:#16a34a;"></i>
+          <span class="text-xs" style="color:#16a34a;">${p.duration}</span>
+        </div>
+        <h3 class="font-display text-lg font-700 mb-2" style="color:#14532d;">${p.title}</h3>
+        <p class="text-sm leading-relaxed line-clamp-2" style="color:#166534;opacity:0.75;">${p.desc}</p>
+        <div class="mt-4 flex items-center gap-1 text-sm font-medium" style="color:#16a34a;">
+          <span>Learn more</span>
+          <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  lucide.createIcons();
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.fade-up').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  });
+}
+
+function openModal(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modalBanner').style.background = p.color;
+  document.getElementById('modalEmoji').textContent = p.emoji;
+  document.getElementById('modalTag').textContent = p.category.charAt(0).toUpperCase() + p.category.slice(1);
+  document.getElementById('modalTag').style.background = p.tagColor + '22';
+  document.getElementById('modalTag').style.color = p.tagColor;
+  document.getElementById('modalDuration').innerHTML = `<i data-lucide="clock" style="width:12px;height:12px;display:inline;"></i> ${p.duration}`;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalObjectives').innerHTML = p.objectives.map(o => `
+    <div class="flex items-start gap-3">
+      <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:#dcfce7;">
+        <i data-lucide="check" style="width:12px;height:12px;color:#16a34a;"></i>
+      </div>
+      <span class="text-sm" style="color:#166534;">${o}</span>
+    </div>
+  `).join('');
+  document.getElementById('modal').classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+}
+
+document.getElementById('modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
+
+document.getElementById('filterBar').addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  currentFilter = btn.dataset.filter;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '#fff';
+    b.style.color = '#166534';
+  });
+  btn.classList.add('active');
+  btn.style.background = '#16a34a';
+  btn.style.color = '#fff';
+  renderProjects(currentFilter);
+});
+
+// Intersection Observer for fade-up
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+// Default config
+const defaultConfig = {
+  background_color: '#f0fdf4',
+  surface_color: '#ffffff',
+  text_color: '#14532d',
+  primary_action_color: '#16a34a',
+  secondary_action_color: '#166534',
+  font_family: 'DM Sans',
+  font_size: 16,
+  page_title: 'Eco Kilan 2.0',
+  page_subtitle: 'This project is carried out in an effort to strengthen ethical business values ​​with sustainable practices through the development of a flower nursery, the construction of a compost garden, a greenhouse for planting flowers and a herb garden in Kampung Kilan.',
+  cta_text: 'Explore Projects'
+};
+
+async function applyConfig(config) {
+  const bg = config.background_color || defaultConfig.background_color;
+  const surface = config.surface_color || defaultConfig.surface_color;
+  const text = config.text_color || defaultConfig.text_color;
+  const primary = config.primary_action_color || defaultConfig.primary_action_color;
+  const secondary = config.secondary_action_color || defaultConfig.secondary_action_color;
+  const font = config.font_family || defaultConfig.font_family;
+  const size = config.font_size || defaultConfig.font_size;
+
+  document.getElementById('app').style.backgroundColor = bg;
+  document.querySelectorAll('.project-card, .bg-white').forEach(el => el.style.backgroundColor = surface);
+  document.getElementById('heroTitle').style.color = text;
+  document.getElementById('heroTitle').textContent = config.page_title || defaultConfig.page_title;
+  document.getElementById('heroSubtitle').textContent = config.page_subtitle || defaultConfig.page_subtitle;
+  document.getElementById('heroSubtitle').style.color = secondary;
+  document.getElementById('ctaButton').style.background = primary;
+  document.getElementById('ctaText').textContent = config.cta_text || defaultConfig.cta_text;
+
+  document.querySelectorAll('.font-display').forEach(el => {
+    el.style.fontFamily = `${font}, Fraunces, serif`;
+  });
+  document.getElementById('heroTitle').style.fontSize = `${size * 3}px`;
+  document.getElementById('heroSubtitle').style.fontSize = `${size * 1.2}px`;
+}
+
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: applyConfig,
+  mapToCapabilities: (config) => ({
+    recolorables: [
+      { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+      { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+      { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+    ],
+    borderables: [],
+    fontEditable: {
+      get: () => config.font_family || defaultConfig.font_family,
+      set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+    },
+    fontSizeable: {
+      get: () => config.font_size || defaultConfig.font_size,
+      set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+    }
+  }),
+  mapToEditPanelValues: (config) => new Map([
+    ['page_title', config.page_title || defaultConfig.page_title],
+    ['page_subtitle', config.page_subtitle || defaultConfig.page_subtitle],
+    ['cta_text', config.cta_text || defaultConfig.cta_text],
+  ])
+});
+
+// Initial render
+renderProjects('all');
+lucide.createIcons();
+
+// Observe fade-ups
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e87461290eaa483',t:'MTc3NTU0NjQ2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
